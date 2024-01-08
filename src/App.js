@@ -1,23 +1,23 @@
 import logo from './logo.svg';
 import './App.css';
+import NavBar from './ComponentesP1/Navbar';
+import Formulario from './ComponentesP1/Formulario';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <strong>Componente José Antonio</strong>
+      <NavBar/>
+      <strong>Componente Alicia</strong>
+      <Formulario></Formulario>
+      <strong>Componente Carmen</strong>
+      {/* tu componente aquí */}
+      <strong>Componente Tibu</strong>
+      {/* tu componente aquí */}
+      <strong>Componente Adrián</strong>
+      {/* tu componente aquí */}
+      <strong>Componente Pablo</strong>
+      {/* tu componente aquí */}
     </div>
   );
 }
