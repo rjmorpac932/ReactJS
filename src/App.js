@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import NavBar from './ComponentesP1/Navbar';
 import Formulario from './ComponentesP1/Formulario';
+import Footer from './ComponentesP1/Footer';
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
       <strong>Componente Adrián</strong>
       {/* tu componente aquí */}
       <strong>Componente Pablo</strong>
-      {/* tu componente aquí */}
+      <Footer ></Footer>
     </div>
   );
 }
