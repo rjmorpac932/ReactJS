@@ -4,6 +4,7 @@ import NavBar from "./ComponentesP1/Navbar";
 import Formulario from "./ComponentesP1/Formulario";
 import Footer from "./ComponentesP1/Footer";
 import Lista from "./ComponentesP1/Lista";
+import CambioColorEnMouse from "./ComponentesP1/OnMouseOver";
 
 function App() {
   return (
@@ -20,6 +21,8 @@ function App() {
       {/* tu componente aquí */}
       <strong>Componente Pablo</strong>
       <Footer></Footer>
+      <CambioColorEnMouse></CambioColorEnMouse>
+     
     </div>
   );
 }
