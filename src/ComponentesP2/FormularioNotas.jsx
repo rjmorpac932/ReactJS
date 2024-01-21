@@ -169,129 +169,144 @@ function FormularioNotas() {
     };
 
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <h1>Añadir nota</h1>
-                </div>
-                <div>
-                    <label>Alumno</label>
-                    <br/>
-                    <select
-                        name="alumno"
-                        value={form.alumno}
-                        onChange={handleChange}
-                    >
-                        <option value="" disabled defaultValue>Selecciona un alumno</option>
-                        <option value="alicia">Alicia</option>
-                        <option value="adrian">Adrián</option>
-                        <option value="carmen">Carmen</option>
-                        <option value="joseantonio">José Antonio</option>
-                        <option value="pablo">Pablo</option>
-                        <option value="tibu">Tibu</option>
-                    </select>
-                    {errors.alumno && <span>{errors.alumno}</span>}
-                </div>
-                <div>
-                    <label>Descripción</label>
-                    <br/>
-                    <input
-                    placeholder='Escriba una descripción'
-                        type="text"
-                        name="descripcion"
-                        value={form.descripcion}
-                        onChange={handleChange}
-                    />
-                    {errors.descripcion && <span>{errors.descripcion}</span>}
-                </div>
-                <div>
-                    <label>Trimestre</label>
-                    <br/>
-                    <select
-                        name="trimestre"
-                        value={form.trimestre}
-                        onChange={handleChange}
-                    >
-                        <option value="" disabled defaultValue>Selecciona un trimestre</option>
-                        <option value="primero">Primer Trimestre</option>
-                        <option value="segundo">Segundo Trimestre</option>
-                        <option value="tercero">Tercer Trimestre</option>
-                    </select>
-                    {errors.trimestre && <span>{errors.trimestre}</span>}
-                </div>
-                <div>
-                    <label>Tarea</label>
-                    <br/>
-                    <select
-                        name="tarea"
-                        value={form.tarea}
-                        onChange={handleChange}
-                    >
-                        <option value="" disabled defaultValue>Selecciona una tarea</option>
-                        <option value="p_ind">Práctica individual</option>
-                        <option value="p_grup">Práctica grupal</option>
-                        <option value="ex_teor">Examen teórico</option>
-                        <option value="ex_pract">Examen práctico</option>
-                        <option value="expo">Exposición</option>
-                    </select>
-                    {errors.tarea && <span>{errors.tarea}</span>}
-                </div>
-                <div>
-                    <label>Nota</label>
-                    <br/>
-                    <input
-                        type="number"
-                        name="nota"
-                        min={0}
-                        max={10}
-                        step={0.1}
-                        value={form.nota}
-                        onChange={handleChange}
-                    />
-                    {errors.nota && <span>{errors.nota}</span>}
-                </div>
-                <input type="submit" value="Añadir" />
-            </form>
+        <div className="container">
+            <div className="row justify-content-center">
+                <div htmlFor="alumno" className="col-md-6">
+                    <form onSubmit={handleSubmit}>
+                        <div className="mb-3">
+                            <h1>Añadir nota</h1>
+                        </div>
+                        <div className="mb-3">
+                            <label className="form-label">Alumno</label>
 
-            <form onSubmit={handleSubmit2}>
-            <div>
-                    <h1>Calcular nota</h1>
-                </div>
-                <div>
-                    <label>Alumno</label>
+                            <select
+                                name="alumno"
+                                value={form.alumno}
+                                onChange={handleChange}
+                                className="form-select"
+                            >
+                                <option value="" disabled defaultValue>Selecciona un alumno</option>
+                                <option value="alicia">Alicia</option>
+                                <option value="adrian">Adrián</option>
+                                <option value="carmen">Carmen</option>
+                                <option value="joseantonio">José Antonio</option>
+                                <option value="pablo">Pablo</option>
+                                <option value="tibu">Tibu</option>
+                            </select>
+                            {errors.alumno && <span>{errors.alumno}</span>}
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="descripcion" className="form-label">Descripción</label>
+
+                            <input
+                                placeholder='Escriba una descripción'
+                                type="text"
+                                name="descripcion"
+                                value={form.descripcion}
+                                onChange={handleChange}
+                                className="form-control"
+                            />
+                            {errors.descripcion && <span>{errors.descripcion}</span>}
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="trimestre" className="form-label">Trimestre</label>
+
+                            <select
+                                name="trimestre"
+                                value={form.trimestre}
+                                onChange={handleChange}
+                                className="form-select"
+                            >
+                                <option value="" disabled defaultValue>Selecciona un trimestre</option>
+                                <option value="primero">Primer Trimestre</option>
+                                <option value="segundo">Segundo Trimestre</option>
+                                <option value="tercero">Tercer Trimestre</option>
+                            </select>
+                            {errors.trimestre && <span>{errors.trimestre}</span>}
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="tarea" className="form-label">Tarea</label>
+
+                            <select
+                                name="tarea"
+                                value={form.tarea}
+                                onChange={handleChange}
+                                className="form-select"
+                            >
+                                <option value="" disabled defaultValue>Selecciona una tarea</option>
+                                <option value="p_ind">Práctica individual</option>
+                                <option value="p_grup">Práctica grupal</option>
+                                <option value="ex_teor">Examen teórico</option>
+                                <option value="ex_pract">Examen práctico</option>
+                                <option value="expo">Exposición</option>
+                            </select>
+                            {errors.tarea && <span>{errors.tarea}</span>}
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="nota" className="form-label">Nota</label>
+
+                            <input
+                                type="number"
+                                name="nota"
+                                min={0}
+                                max={10}
+                                step={0.1}
+                                value={form.nota}
+                                onChange={handleChange}
+                                className="form-control"
+                            />
+                            {errors.nota && <span>{errors.nota}</span>}
+                        </div>
+                        <div className='mb-3'>
+                            <button type="submit" className="btn btn-primary">Añadir</button>
+                        </div>
+                    </form>
                     <br/>
-                    <select
-                        name="alumno_calc"
-                        value={form2.alumno_calc}
-                        onChange={handleChange2}
-                    >
-                        <option value="" disabled selected>Selecciona un alumno</option>
-                        <option value="alicia">Alicia</option>
-                        <option value="adrian">Adrián</option>
-                        <option value="carmen">Carmen</option>
-                        <option value="joseantonio">José Antonio</option>
-                        <option value="pablo">Pablo</option>
-                        <option value="tibu">Tibu</option>
-                    </select>
-                    {errors2.alumno_calc && <span>{errors2.alumno_calc}</span>}
+                    <form onSubmit={handleSubmit2}>
+                    <div className="mb-3">
+                            <h1>Calcular nota</h1>
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="alumno" className="form-label">Alumno</label>
+
+                            <select
+                                name="alumno_calc"
+                                value={form2.alumno_calc}
+                                onChange={handleChange2}
+                                className="form-select"
+                            >
+                                <option value="" disabled selected>Selecciona un alumno</option>
+                                <option value="alicia">Alicia</option>
+                                <option value="adrian">Adrián</option>
+                                <option value="carmen">Carmen</option>
+                                <option value="joseantonio">José Antonio</option>
+                                <option value="pablo">Pablo</option>
+                                <option value="tibu">Tibu</option>
+                            </select>
+                            {errors2.alumno_calc && <span>{errors2.alumno_calc}</span>}
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="trimestre" className="form-label">Trimestre</label>
+
+                            <select
+                                name="trimestre_calc"
+                                value={form2.trimestre_calc}
+                                onChange={handleChange2}
+                                className="form-select"
+                            >
+                                <option value="" disabled selected>Selecciona un trimestre</option>
+                                <option value="primero">Primer Trimestre</option>
+                                <option value="segundo">Segundo Trimestre</option>
+                                <option value="tercero">Tercer Trimestre</option>
+                            </select>
+                            {errors2.trimestre_calc && <span>{errors2.trimestre_calc}</span>}
+                        </div>
+                        <div className="mb-3">
+                            <button type="submit" className="btn btn-primary">Calcular</button>
+                        </div>
+                    </form>
                 </div>
-                <div>
-                    <label>Trimestre</label>
-                    <br/>
-                    <select
-                        name="trimestre_calc"
-                        value={form2.trimestre_calc}
-                        onChange={handleChange2}
-                    >
-                        <option value="" disabled selected>Selecciona un trimestre</option>
-                        <option value="primero">Primer Trimestre</option>
-                        <option value="segundo">Segundo Trimestre</option>
-                        <option value="tercero">Tercer Trimestre</option>
-                    </select>
-                    {errors2.trimestre_calc && <span>{errors2.trimestre_calc}</span>}
-                </div>
-                <input type="submit" value="Calcular" />
-            </form>
+            </div>
         </div>
     );
 }
