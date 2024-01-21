@@ -12,6 +12,9 @@ import Footer from "../ComponentesP1/Footer";
 import Lista from "../ComponentesP1/Lista";
 import Actualizacion from "../ComponentesP2/Actualizacion";
 import RegistrarUsuarioForm from "../ComponentesP2/registrarUsuario";
+import Navbar from "../ComponentesP2/Adrián/Navbar"
+import Triangulo from "../ComponentesP2/Adrián/AreaTriangulo"
+import Login from "../ComponentesP2/Adrián/Login"
 
 function Public() {
     return (
@@ -32,7 +35,9 @@ function Public() {
                     </Route>
                     <Route path="/practica2/" element={<RutasAnidadas />} >
                         <Route path="alicia" element={<Actualizacion />} />
-                        <Route path="adrian" element={<p>Formulario con evento de Adrián</p>} />
+                        <Route path="adrian/triangulo" element={<Triangulo/>}/>
+                        <Route path="adrian/login" element={<Login/>}/>
+                        <Route path="adrian" element={<Navbar/>} />
                         <Route path="carmen" element={<p>Formulario con evento de Carmen</p>} />
                         <Route path="joseantonio" element={<FormularioNotas></FormularioNotas>} />
                         <Route path="pablo" element={<p>Formulario con evento de Pablo</p>} />
