@@ -7,7 +7,7 @@ const Login = () => {
 
   const login = (e) => {
     e.preventDefault();
-    console.log(`Username: ${username}, Password: ${password}`);
+    alert(`Username: ${username}, Password: ${password}`);
   };
 
   return (

@@ -4,7 +4,6 @@ import NotFound from "../pages/NotFound";
 import Menu from "../components/Menu";
 import RutasAnidadas from "../pages/RutasAnidadas";
 import FormularioNotas from "../ComponentesP2/FormularioNotas";
-import Actualizacion from "../ComponentesP2/Actualizacion";
 import NavBar from "../ComponentesP1/Navbar";
 import Formulario from "../ComponentesP1/Formulario";
 import Boton from "../ComponentesP1/Boton";
@@ -30,7 +29,7 @@ function Public() {
                         <Route path="tibu" element={<Lista/>}/>   
                     </Route>
                     <Route path="/practica2/" element={<RutasAnidadas />} >
-                        <Route path="alicia" element={<Actualizacion/>}/>
+                        <Route path="alicia" element={<p>Formulario con evento de Alicia</p>}/>
                         <Route path="adrian" element={<p>Formulario con evento de Adrián</p>}/>
                         <Route path="carmen" element={<p>Formulario con evento de Carmen</p>}/>
                         <Route path="joseantonio" element={<FormularioNotas></FormularioNotas>}/>
