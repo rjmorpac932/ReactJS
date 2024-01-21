@@ -10,6 +10,7 @@ import Boton from "../ComponentesP1/Boton";
 import CambioColorEnMouse from "../ComponentesP1/OnMouseOver";
 import Footer from "../ComponentesP1/Footer";
 import Lista from "../ComponentesP1/Lista";
+import Actualizacion from "../ComponentesP2/Actualizacion";
 
 function Public() {
     return ( 
@@ -29,7 +30,7 @@ function Public() {
                         <Route path="tibu" element={<Lista/>}/>   
                     </Route>
                     <Route path="/practica2/" element={<RutasAnidadas />} >
-                        <Route path="alicia" element={<p>Formulario con evento de Alicia</p>}/>
+                        <Route path="alicia" element={<Actualizacion/>}/>
                         <Route path="adrian" element={<p>Formulario con evento de Adrián</p>}/>
                         <Route path="carmen" element={<p>Formulario con evento de Carmen</p>}/>
                         <Route path="joseantonio" element={<FormularioNotas></FormularioNotas>}/>
