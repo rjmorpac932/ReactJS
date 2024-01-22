@@ -1,10 +1,10 @@
 import React from 'react';
 
 // Función que devuelve un componente de botón
-const Boton = ({ texto, onClick }) => {
+const Boton = ({ onClick }) => {
   return (
     <button onClick={onClick}>
-      {texto}
+      {"Botón reutilizable"}
     </button>
   );
 };
