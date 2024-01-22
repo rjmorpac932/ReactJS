@@ -13,6 +13,7 @@ class MiFormulario extends React.Component {
         email: "",
         img: null,
       },
+      imageURL:null,
     };
   }
   //Maneja los cambios en el formulario.
