@@ -2,10 +2,13 @@ import React, { useState } from 'react';
 import './styles.css';
 
 const Login = () => {
+  //Crea un estado para los componentes
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
+  //Manejador de eventos
   const login = (e) => {
+    //No recarga la pagina
     e.preventDefault();
     alert(`Username: ${username}, Password: ${password}`);
   };
@@ -16,6 +19,7 @@ const Login = () => {
     <form onSubmit={login} className="form">
       <label>
         Usuario:
+        {/*Llama a las funciones y le asigna el valor*/}
         <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} className='input' />
       </label>
       <label>

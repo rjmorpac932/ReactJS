@@ -2,11 +2,14 @@ import React, { useState } from 'react';
 import './styles.css';
 
 const AreaTriangulo = () => {
+  //Crea un estado para los componentes
   const [base, setBase] = useState(0);
   const [altura, setAltura] = useState(0);
   const [area, setArea] = useState(0);
 
+  //Manejador de eventos
   const calcularArea = (e) => {
+    //No recarga la pagina
     e.preventDefault();
     setArea((base * altura) / 2);
   };
@@ -17,6 +20,7 @@ const AreaTriangulo = () => {
       <form onSubmit={calcularArea} className="form">
         <label>
           Base:
+          {/*Llama a las funciones y le asigna el valor*/}
           <input type="number" value={base} onChange={(e) => setBase(e.target.value)} className="input" />
         </label>
         <label>
@@ -25,6 +29,7 @@ const AreaTriangulo = () => {
         </label>
         <button type="submit" className="button">Calcular</button>
       </form>
+      {/*Se le muestra el valor*/}
       <p>El área del triángulo es: {area}</p>
       <p><i>La fórmula para calcular el área de un triagulo es: <b>base * altura /2</b></i></p>
     </div>
