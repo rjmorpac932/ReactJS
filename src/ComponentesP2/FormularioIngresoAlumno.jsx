@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-//{ useState } permite utilizar el estado en componentes funcionales. 
+//{ useState } permite utilizar el estado en componentes funcionales.
 import "../App.css";
 
 class MiFormulario extends React.Component {
   constructor(props) {
     super(props);
-//Constructores con los datos iniciales del formulario.
+    //Constructores con los datos iniciales del formulario.
     this.state = {
       formularioData: {
         nombre: "",
@@ -34,15 +34,17 @@ class MiFormulario extends React.Component {
           [name]: file,
         },
       }));
-
+      //lectura del archivo
       const reader = new FileReader();
       reader.onloadend = () => {
         this.setState({ imageURL: reader.result });
       };
+      // Verifica si hay un archivo antes de intentar leerlo
       if (file) {
         reader.readAsDataURL(file);
       }
     } else {
+      // Manejo para otros tipos de input (nombre, apellidos, email)
       this.setState((prevState) => ({
         formularioData: {
           ...prevState.formularioData,
@@ -54,11 +56,15 @@ class MiFormulario extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-  
+
     const confirmation = window.confirm(
-      `Confirmar envío con los siguientes datos:\n\nNombre: ${this.state.formularioData.nombre}\nApellidos: ${this.state.formularioData.apellidos}\nEmail: ${this.state.formularioData.email}\nImagen: ${this.state.formularioData.img ? "Adjunta" : "No adjunta"}`
+      `Confirmar envío con los siguientes datos:\n\nNombre: ${
+        this.state.formularioData.nombre
+      }\nApellidos: ${this.state.formularioData.apellidos}\nEmail: ${
+        this.state.formularioData.email
+      }\nImagen: ${this.state.formularioData.img ? "Adjunta" : "No adjunta"}`
     );
-  
+
     if (confirmation) {
       console.log("Datos del formulario enviados:", this.state.formularioData);
       // Puedes enviar los datos al servidor aquí, por ejemplo, mediante una solicitud fetch() o axios
@@ -66,7 +72,6 @@ class MiFormulario extends React.Component {
       console.log("Envío cancelado");
     }
   };
-  
 
   render() {
     const { imageURL } = this.state;
@@ -138,7 +143,9 @@ class MiFormulario extends React.Component {
 
           {imageURL && (
             <div className="form-group row">
-              <label className="col-4 col-form-label">Imagen seleccionada:</label>
+              <label className="col-4 col-form-label">
+                Imagen seleccionada:
+              </label>
               <div className="col-8">
                 <img
                   src={imageURL}
