@@ -13,7 +13,13 @@ class MiFormulario extends React.Component {
         email: "",
         img: null,
       },
-      imageURL:null,
+      errors: {
+        nombre: "",
+        apellidos: "",
+        email: "",
+        img: "",
+      },
+      imageURL: null,
     };
   }
   //Maneja los cambios en el formulario.
@@ -49,12 +55,13 @@ class MiFormulario extends React.Component {
   handleSubmit = (event) => {
     event.preventDefault();
   
-    const confirmacion = window.confirm(
+    const confirmation = window.confirm(
       `Confirmar envío con los siguientes datos:\n\nNombre: ${this.state.formularioData.nombre}\nApellidos: ${this.state.formularioData.apellidos}\nEmail: ${this.state.formularioData.email}\nImagen: ${this.state.formularioData.img ? "Adjunta" : "No adjunta"}`
     );
   
-    if (confirmacion) {
+    if (confirmation) {
       console.log("Datos del formulario enviados:", this.state.formularioData);
+      // Puedes enviar los datos al servidor aquí, por ejemplo, mediante una solicitud fetch() o axios
     } else {
       console.log("Envío cancelado");
     }
@@ -67,7 +74,6 @@ class MiFormulario extends React.Component {
     return (
       <div className="center-container">
         <form onSubmit={this.handleSubmit}>
-         <fieldset id="insertar">Insertar Alumno</fieldset>
           <div className="form-group row">
             <label htmlFor="nombre" className="col-4 col-form-label">
               Nombre:
