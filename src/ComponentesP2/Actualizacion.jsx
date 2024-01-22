@@ -9,7 +9,7 @@ function Actualizacion() {
     { id: 1, nombre: 'Ana Alicia', apellidos: 'Lopez Vazquez', editing: false },
     { id: 2, nombre: 'Pablo', apellidos: 'Marquez Gomez', editing: false },
     { id: 3, nombre: 'Jose Antonio', apellidos: 'Vergara Sanchez', editing: false },
-    { id: 4, nombre: 'Carmen', apellidos: 'Sanchez Martínez', editing: false },
+    { id: 4, nombre: 'Carmen', apellidos: 'Sanchez Martín', editing: false },
     { id: 5, nombre: 'Adrían', apellidos: 'Martinez Segura', editing: false },
     { id: 6, nombre: 'Tibu', apellidos: 'Mayo González', editing: false },
   ];
