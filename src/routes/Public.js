@@ -16,6 +16,7 @@ import Navbar from "../ComponentesP2/Adrián/Navbar"
 import Triangulo from "../ComponentesP2/Adrián/AreaTriangulo"
 import Login from "../ComponentesP2/Adrián/Login"
 import Eliminar from "../ComponentesP2/EliminarAlumno"
+import MiFormulario from "../ComponentesP2/FormularioIngresoAlumno";
 
 function Public() {
     return (
@@ -39,7 +40,7 @@ function Public() {
                         <Route path="adrian/triangulo" element={<Triangulo/>}/>
                         <Route path="adrian/login" element={<Login/>}/>
                         <Route path="adrian" element={<Navbar/>} />
-                        <Route path="carmen" element={<p>Formulario con evento de Carmen</p>} />
+                        <Route path="carmen" element={<MiFormulario/>} />
                         <Route path="joseantonio" element={<FormularioNotas></FormularioNotas>} />
                         <Route path="pablo" element={<Eliminar />} />
                         <Route path="tibu" element={<RegistrarUsuarioForm></RegistrarUsuarioForm>} />
