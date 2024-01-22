@@ -5,8 +5,8 @@ function Menu() {
     return ( 
         <nav>
             <ul style={{ display: "flex", listStyle: "none" }}>
-                <li style={{ marginRight: "10px" }}><NavLink to="/practica1">P1</NavLink></li>
-                <li style={{ marginRight: "10px" }}><NavLink to="/practica2">P2</NavLink></li>
+                <li style={{ marginRight: "10px" }}><NavLink to="/practica1">Spring1</NavLink></li>
+                <li style={{ marginRight: "10px" }}><NavLink to="/practica2">Spring2</NavLink></li>
             </ul>
         </nav>
      );
