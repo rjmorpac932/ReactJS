@@ -67,6 +67,7 @@ class MiFormulario extends React.Component {
     return (
       <div className="center-container">
         <form onSubmit={this.handleSubmit}>
+         <fieldset id="insertar">Insertar Alumno</fieldset>
           <div className="form-group row">
             <label htmlFor="nombre" className="col-4 col-form-label">
               Nombre:
@@ -108,7 +109,7 @@ class MiFormulario extends React.Component {
                 id="email"
                 name="email"
                 placeholder="Ingrese email del alumno..."
-                type="text"
+                type="email"
                 className="form-control"
                 onChange={this.handleInputChange}
               />
