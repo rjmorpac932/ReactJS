@@ -7,16 +7,16 @@ const Login = () => {
   const [password, setPassword] = useState('');
 
   //Manejador de eventos
-  const login = (e) => {
+  const handleEdit = (event) => {
     //No recarga la pagina
-    e.preventDefault();
+    event.preventDefault();
     alert(`Username: ${username}, Password: ${password}`);
   };
 
   return (
     <div className='recuadro'>
       <h1>Inicio de sesión</h1>
-    <form onSubmit={login} className="form">
+    <form onSubmit={handleEdit} className="form">
       <label>
         Usuario:
         {/*Llama a las funciones y le asigna el valor*/}
@@ -26,7 +26,7 @@ const Login = () => {
         Contraseña:
         <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className='input'/>
       </label>
-      <button type="submit" className='button'>Iniciar sesión</button>
+      <button type="submit" className='button btn btn-primary'>Iniciar sesión</button>
     </form>
     </div>
   );

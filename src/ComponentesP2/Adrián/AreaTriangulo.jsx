@@ -8,16 +8,16 @@ const AreaTriangulo = () => {
   const [area, setArea] = useState(0);
 
   //Manejador de eventos
-  const calcularArea = (e) => {
+  const handleEdit = (event) => {
     //No recarga la pagina
-    e.preventDefault();
+    event.preventDefault();
     setArea((base * altura) / 2);
   };
 
   return (
     <div className="recuadro">
       <h1>Calcular el área de un triángulo</h1>
-      <form onSubmit={calcularArea} className="form">
+      <form onSubmit={handleEdit} className="form">
         <label>
           Base:
           {/*Llama a las funciones y le asigna el valor*/}
@@ -27,7 +27,7 @@ const AreaTriangulo = () => {
           Altura:
           <input type="number" value={altura} onChange={(e) => setAltura(e.target.value)} className="input" />
         </label>
-        <button type="submit" className="button">Calcular</button>
+        <button type="submit" className="button btn btn-primary">Calcular</button>
       </form>
       {/*Se le muestra el valor*/}
       <p>El área del triángulo es: {area}</p>
