@@ -33,7 +33,7 @@ CREATE TABLE notas (
     idTrimestre INT,
     idTarea INT,
     nota DECIMAL(5,2),
-    FOREIGN KEY (idAlumno) REFERENCES alumnos(id),
+    FOREIGN KEY (idAlumno) REFERENCES alumnos(id) ON DELETE CASCADE,
     FOREIGN KEY (idTrimestre) REFERENCES trimestre(id),
     FOREIGN KEY (idTarea) REFERENCES tareas(id)
 );

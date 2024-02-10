@@ -4,7 +4,7 @@ const cors = require('cors');
 //Nuestras rutas
 const routeActualizarUsuario = require('./routes/routeActualizarUsuario.js');
 const routeAñadirUsuario = require('./routes/routeAñadirUsuario.js');
-// const routeEliminarUsuario = require('./routes/routeEliminarUsuario.js');
+const routeEliminarUsuario = require('./routes/routeEliminarUsuario.js');
 const routeLoginUsuario = require('./routes/routeLoginUsuario.js');
 // const routeRegistroNotas = require('./routes/routeRegistroNotas.js');
 //Ya implementado
@@ -18,7 +18,7 @@ app.use(cors());
 //Llamada a nuestras rutas
 app.use('/', routeActualizarUsuario);
 app.use('/', routeAñadirUsuario);
-// app.use('/', routeEliminarUsuario);
+app.use('/', routeEliminarUsuario);
 app.use('/', routeLoginUsuario);
 // app.use('/', routeRegistroNotas);
 //Ya implementado
