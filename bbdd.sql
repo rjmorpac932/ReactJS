@@ -22,9 +22,7 @@ CREATE TABLE trimestre (
 
 CREATE TABLE tareas (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    idTrimestre INT,
-    nombre VARCHAR(255),
-    FOREIGN KEY (idTrimestre) REFERENCES trimestre(id)
+    nombre VARCHAR(255)
 );
 
 CREATE TABLE notas (
@@ -32,8 +30,21 @@ CREATE TABLE notas (
     idAlumno INT,
     idTrimestre INT,
     idTarea INT,
+    descripcion VARCHAR(255),
     nota DECIMAL(5,2),
     FOREIGN KEY (idAlumno) REFERENCES alumnos(id) ON DELETE CASCADE,
     FOREIGN KEY (idTrimestre) REFERENCES trimestre(id),
     FOREIGN KEY (idTarea) REFERENCES tareas(id)
 );
+
+INSERT INTO trimestre (nombre) VALUES 
+('Primer Trimestre'), 
+('Segundo Trimestre'), 
+('Tercer Trimestre');
+
+INSERT INTO tareas (nombre) VALUES 
+('Práctica individual'), 
+('Práctica grupal'), 
+('Examen teórico'), 
+('Examen práctico'), 
+('Exposicion');
