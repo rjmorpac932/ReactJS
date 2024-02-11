@@ -53,6 +53,7 @@ const RegistrarUsuarioForm = () => {
     } catch (error) {
       // Manejar errores de la solicitud al servidor
       console.log('El nombre de usuario ya existe.');
+      alert("El nombre de usuario ya existe, pruebe con otro.")
     }
   };
 
