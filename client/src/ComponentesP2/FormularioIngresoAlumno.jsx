@@ -108,7 +108,7 @@ class MiFormulario extends React.Component {
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-md-6">
-            <form onSubmit={this.handleSubmit}>
+            <form onSubmit={this.handleSubmit} className="border border-2 bg-light p-4 rounded">
               <fieldset>
                 <h1>Ingrese Nuevo Alumno</h1>
                 <div className="form-group row">

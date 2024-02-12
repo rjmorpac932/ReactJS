@@ -249,7 +249,7 @@ const enviarSolicitudCalculoAlServidor = async (idAlumno, idTrimestre) => {
         <div className="container">
             <div className="row justify-content-center">
                 <div htmlFor="alumno" className="col-md-6">
-                    <form onSubmit={handleSubmit}>
+                    <form onSubmit={handleSubmit} className="border border-2 bg-light p-4 rounded">
                         <div className="mb-3">
                             <h1>Añadir nota</h1>
                         </div>
@@ -331,7 +331,7 @@ const enviarSolicitudCalculoAlServidor = async (idAlumno, idTrimestre) => {
                         </div>
                     </form>
                     <br />
-                    <form onSubmit={handleSubmit2}>
+                    <form onSubmit={handleSubmit2} className="border border-2 bg-light p-4 rounded">
                         <div className="mb-3">
                             <h1>Calcular nota</h1>
                         </div>
