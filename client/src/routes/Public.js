@@ -12,9 +12,7 @@ import Footer from "../ComponentesP1/Footer";
 import Lista from "../ComponentesP1/Lista";
 import Actualizacion from "../ComponentesP2/Actualizacion";
 import RegistrarUsuarioForm from "../ComponentesP2/registrarUsuario";
-import Navbar from "../ComponentesP2/Adrián/Navbar"
-import Triangulo from "../ComponentesP2/Adrián/AreaTriangulo"
-import Login from "../ComponentesP2/Adrián/Login"
+import Login from "../ComponentesP2/Login"
 import Eliminar from "../ComponentesP2/EliminarAlumno"
 import MiFormulario from "../ComponentesP2/FormularioIngresoAlumno";
 import PDFViewer from "../components/pdfViewer";
@@ -44,9 +42,7 @@ function Public() {
                     </Route>
                     <Route path="/practica2/" element={<RutasAnidadas />} >
                         <Route path="alicia" element={<Actualizacion />} />
-                        <Route path="adrian/triangulo" element={<Triangulo />} />
-                        <Route path="adrian/login" element={<Login />} />
-                        <Route path="adrian" element={<Navbar />} />
+                        <Route path="adrian" element={<Login />} />
                         <Route path="carmen" element={<MiFormulario />} />
                         <Route path="joseantonio" element={<FormularioNotas></FormularioNotas>} />
                         <Route path="pablo" element={<Eliminar />} />
