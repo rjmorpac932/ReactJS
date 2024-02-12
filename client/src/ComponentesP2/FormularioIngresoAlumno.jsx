@@ -77,10 +77,8 @@ class MiFormulario extends React.Component {
     }
 
     const confirmation = window.confirm(
-      `Confirmar envío con los siguientes datos:\n\nNombre: ${
-        this.state.formularioData.nombre
-      }\nApellidos: ${this.state.formularioData.apellidos}\nEmail: ${
-        this.state.formularioData.email
+      `Confirmar envío con los siguientes datos:\n\nNombre: ${this.state.formularioData.nombre
+      }\nApellidos: ${this.state.formularioData.apellidos}\nEmail: ${this.state.formularioData.email
       }`
     );
 
@@ -107,67 +105,71 @@ class MiFormulario extends React.Component {
 
   render() {
     return (
-      <div className="center-container">
-        <form onSubmit={this.handleSubmit}>
-          <fieldset>
-            <legend>Ingrese Nuevo Alumno</legend>
-            <div className="form-group row">
-              <label htmlFor="nombre" className="col-4 col-form-label">
-                Nombre:
-              </label>
-              <div className="col-8">
-                <div className="input-group">
-                  <input
-                    id="nombre"
-                    name="nombre"
-                    placeholder="Ingrese nombre del alumno..."
-                    type="text"
-                    className="form-control"
-                    onChange={this.handleInputChange}
-                  />
+      <div className="container">
+        <div className="row justify-content-center">
+          <div className="col-md-6">
+            <form onSubmit={this.handleSubmit}>
+              <fieldset>
+                <h1>Ingrese Nuevo Alumno</h1>
+                <div className="form-group row">
+                  <label htmlFor="nombre" className="col-4 col-form-label">
+                    Nombre:
+                  </label>
+                  <div className="col-8">
+                    <div className="input-group">
+                      <input
+                        id="nombre"
+                        name="nombre"
+                        placeholder="Ingrese nombre del alumno..."
+                        type="text"
+                        className="form-control"
+                        onChange={this.handleInputChange}
+                      />
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-            <div className="form-group row">
-              <label htmlFor="apellidos" className="col-4 col-form-label">
-                Apellidos:
-              </label>
-              <div className="col-8">
-                <input
-                  id="apellidos"
-                  name="apellidos"
-                  placeholder="Ingrese apellidos del alumno..."
-                  type="text"
-                  className="form-control"
-                  onChange={this.handleInputChange}
-                />
-              </div>
-            </div>
-            <div className="form-group row">
-              <label htmlFor="email" className="col-4 col-form-label">
-                Email:
-              </label>
-              <div className="col-8">
-                <input
-                  id="email"
-                  name="email"
-                  placeholder="Ingrese email del alumno..."
-                  type="email"
-                  className="form-control"
-                  onChange={this.handleInputChange}
-                />
-              </div>
-            </div>
-            {/* Agrega aquí otros campos del formulario si los necesitas */}
-            <div className="form-group row">
-              <div className="offset-4 col-8">
-                <button type="submit" className="btn btn-primary">
-                  Enviar
-                </button>
-              </div>
-            </div>
-          </fieldset>
-        </form>
+                <div className="form-group row">
+                  <label htmlFor="apellidos" className="col-4 col-form-label">
+                    Apellidos:
+                  </label>
+                  <div className="col-8">
+                    <input
+                      id="apellidos"
+                      name="apellidos"
+                      placeholder="Ingrese apellidos del alumno..."
+                      type="text"
+                      className="form-control"
+                      onChange={this.handleInputChange}
+                    />
+                  </div>
+                </div>
+                <div className="form-group row">
+                  <label htmlFor="email" className="col-4 col-form-label">
+                    Email:
+                  </label>
+                  <div className="col-8">
+                    <input
+                      id="email"
+                      name="email"
+                      placeholder="Ingrese email del alumno..."
+                      type="email"
+                      className="form-control"
+                      onChange={this.handleInputChange}
+                    />
+                  </div>
+                </div>
+                {/* Agrega aquí otros campos del formulario si los necesitas */}
+                <div className="form-group row">
+                  <div className="offset-4 col-8">
+                    <button type="submit" className="btn btn-primary">
+                      Enviar
+                    </button>
+                  </div>
+                </div>
+              </fieldset>
+            </form>
+          </div>
+        </div>
       </div>
     );
   }

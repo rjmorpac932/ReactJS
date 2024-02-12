@@ -60,12 +60,12 @@ function Actualizacion() {
   };
   const handleSave = (id) => {
     const item = formData.find(item => item.id === id);
-    
+
     console.log('Datos del alumno a enviar:', item);
-    
+
     // Extrae solo los campos que quieres enviar
     const { nombre, apellidos, email } = item;
-  
+
     // Realiza una solicitud PUT al servidor para actualizar los datos del alumno
     axios.put(`http://localhost:3001/alumnos/${id}`, { nombre, apellidos, email })
       .then(response => {
@@ -76,8 +76,8 @@ function Actualizacion() {
         console.error('Error al actualizar el alumno:', error);
       });
   };
-  
-  
+
+
 
   return (
     <div className='main'>
@@ -85,8 +85,8 @@ function Actualizacion() {
         <br />
         <h1>Edición de Alumnos</h1>
         <br />
-        <table className="table">
-        <caption>Lista de alumnos</caption>
+        <table className="table table-hover">
+          <caption>Lista de alumnos</caption>
           <thead>
             <tr>
               <th className="th-nombre">Nombre</th>

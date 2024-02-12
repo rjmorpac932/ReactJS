@@ -86,6 +86,7 @@ const RegistrarUsuarioForm = () => {
           <form onSubmit={handleSubmit}>
 
             <div className="mb-3">
+              <h1>Iniciar Sesión</h1>
               <label htmlFor="nombre" className="form-label">Nombre:</label>
               <input
                 type="text"

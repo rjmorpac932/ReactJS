@@ -1,8 +1,8 @@
 import { Outlet, NavLink } from "react-router-dom";
 
 function RutasAnidadas() {
-    return ( 
-        <div className="text-center my-5">
+    return (
+        <div className="my-5">
 
             <div className="d-flex flex-wrap justify-content-center">
                 <div className="col-xl-2 col-lg-3 col-md-4 col-sm-6 mb-3">
@@ -26,10 +26,10 @@ function RutasAnidadas() {
             </div>
 
             <div className="mt-5">
-                <Outlet/>
+                <Outlet />
             </div>
         </div>
-     );
+    );
 }
 
 export default RutasAnidadas;
