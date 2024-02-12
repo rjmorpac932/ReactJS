@@ -112,10 +112,10 @@ class MiFormulario extends React.Component {
               <fieldset>
                 <h1>Ingrese Nuevo Alumno</h1>
                 <div className="form-group row">
-                  <label htmlFor="nombre" className="col-4 col-form-label">
+                  <label htmlFor="nombre" className="col-12 col-form-label">
                     Nombre:
                   </label>
-                  <div className="col-8">
+                  <div className="col-12">
                     <div className="input-group">
                       <input
                         id="nombre"
@@ -129,10 +129,10 @@ class MiFormulario extends React.Component {
                   </div>
                 </div>
                 <div className="form-group row">
-                  <label htmlFor="apellidos" className="col-4 col-form-label">
+                  <label htmlFor="apellidos" className="col-12 col-form-label">
                     Apellidos:
                   </label>
-                  <div className="col-8">
+                  <div className="col-12">
                     <input
                       id="apellidos"
                       name="apellidos"
@@ -144,10 +144,10 @@ class MiFormulario extends React.Component {
                   </div>
                 </div>
                 <div className="form-group row">
-                  <label htmlFor="email" className="col-4 col-form-label">
+                  <label htmlFor="email" className="col-12 col-form-label">
                     Email:
                   </label>
-                  <div className="col-8">
+                  <div className="col-12">
                     <input
                       id="email"
                       name="email"
