@@ -83,15 +83,16 @@ function Actualizacion() {
     <div className='main'>
       <div className='container'>
         <br />
-        <h1>Edición de usuarios</h1>
+        <h1>Edición de Alumnos</h1>
         <br />
         <table className="table">
+        <caption>Lista de alumnos</caption>
           <thead>
             <tr>
               <th className="th-nombre">Nombre</th>
               <th className="th-apellido">Apellidos</th>
               <th className="th-email">Email</th>
-              <th className="th-editar">Editar</th>
+              <th className="th-editar"></th>
             </tr>
           </thead>
           <tbody>

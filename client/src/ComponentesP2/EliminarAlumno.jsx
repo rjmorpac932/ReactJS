@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Modal } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 
 //Componente funcional que muestra una tabla con datos de los alumnos y que permite borrarlos
@@ -65,15 +64,17 @@ const Tabla = () => {
     //Tabla y modal para mostrar los datos de los alumnos y permitir borrarlos
     return (
         <div className='container mt-4'>
+        <h1>Eliminación de Alumnos</h1>
+        <br></br>
             <table className='table table-hover text-center align-middle caption-top'>
                 <caption>Lista de alumnos</caption>
-                <thead className='table-dark'>
+                <thead>
                     <tr>
                         <th>ID</th>
                         <th>Nombre</th>
                         <th>Apellidos</th>
                         <th>Email</th>
-                        <th>Borrar</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
