@@ -45,7 +45,7 @@ const Login = () => {
         <br />
         <button type="submit" className='button btn btn-primary'>Iniciar sesión</button>
       </form>
-      <p>No tienes una cuenta? <Link to="/practica2/tibu">Regístrate aquí</Link></p>
+      <p>No tienes una cuenta? <Link to="/gestionAlumnos/tibu">Regístrate aquí</Link></p>
     </div>
   );
 };
