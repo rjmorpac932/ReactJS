@@ -16,6 +16,7 @@ import Login from "../ComponentesP2/Login"
 import Eliminar from "../ComponentesP2/EliminarAlumno"
 import MiFormulario from "../ComponentesP2/FormularioIngresoAlumno";
 import PDFViewer from "../components/pdfViewer";
+import RutasAnidadasApp from "../pages/RutasAnidadasApp";
 
 function Public() {
 
@@ -40,13 +41,15 @@ function Public() {
                         <Route path="pablo" element={<Footer></Footer>} />
                         <Route path="tibu" element={<Lista />} />
                     </Route>
-                    <Route path="/practica2/" element={<RutasAnidadas />} >
-                        <Route path="alicia" element={<Actualizacion />} />
-                        <Route path="adrian" element={<Login />} />
+                    <Route path="/gestionAlumnos" element={<Login />} />
+                    <Route path="/gestionAlumnos/tibu" element={<RegistrarUsuarioForm></RegistrarUsuarioForm>} />
+
+                    <Route path="/gestionAlumnos/inicio/" element={<RutasAnidadasApp />} >
                         <Route path="carmen" element={<MiFormulario />} />
                         <Route path="joseantonio" element={<FormularioNotas></FormularioNotas>} />
+                        <Route path="alicia" element={<Actualizacion />} />
                         <Route path="pablo" element={<Eliminar />} />
-                        <Route path="tibu" element={<RegistrarUsuarioForm></RegistrarUsuarioForm>} />
+
                     </Route>
                 </Routes>
             </Router>

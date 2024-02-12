@@ -76,9 +76,9 @@ function Menu() {
                     <NavLink
                       className="nav-link"
                       activeClassName="active"
-                      to="/practica2"
+                      to="/gestionAlumnos"
                     >
-                      Segunda Práctica
+                      Gestión Alumnos
                     </NavLink>
                   </DropdownItem>
                 </DropdownMenu>

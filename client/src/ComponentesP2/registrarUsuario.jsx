@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const RegistrarUsuarioForm = () => {
   // Estado para almacenar los datos del formulario
@@ -10,6 +11,8 @@ const RegistrarUsuarioForm = () => {
     usuario: '',
     password: ''
   });
+
+  const navigate = useNavigate();
 
   // Estado para controlar la visibilidad de la contraseña
   const [showPassword, setShowPassword] = useState(false);
@@ -48,6 +51,10 @@ const RegistrarUsuarioForm = () => {
         usuario: '',
         password: ''
       });
+
+      alert("Usuario registrado.")
+
+      navigate('/gestionAlumnos');
 
 
     } catch (error) {
