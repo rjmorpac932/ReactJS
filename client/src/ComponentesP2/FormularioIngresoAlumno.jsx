@@ -5,45 +5,31 @@ import "../App.css";
 class MiFormulario extends React.Component {
   constructor(props) {
     super(props);
-    // Constructores con los datos iniciales del formulario.
     this.state = {
       formularioData: {
         nombre: "",
         apellidos: "",
         email: "",
       },
-      errors: {
-        nombre: "",
-        apellidos: "",
-        email: "",
-      },
+      errors: {},
+      showConfirmation: false,
     };
   }
 
-  // Maneja los cambios en el formulario.
   handleInputChange = (event) => {
-    const { name, value } = event.target;
-
-    // Manejo para otros tipos de input (nombre, apellidos, email)
-    this.setState((prevState) => ({
+    this.setState({
       formularioData: {
-        ...prevState.formularioData,
-        [name]: value,
+        ...this.state.formularioData,
+        [event.target.name]: event.target.value,
       },
-      errors: {
-        ...prevState.errors,
-        [name]: "", // Limpiar el mensaje de error al cambiar el valor
-      },
-    }));
+    });
   };
 
-  // Función para validar el formato del correo electrónico
   validateEmailFormat = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   };
 
-  // Validaciones antes de enviar el formulario
   validateForm = () => {
     const { nombre, apellidos, email } = this.state.formularioData;
     const errors = {};
@@ -62,53 +48,75 @@ class MiFormulario extends React.Component {
       errors.email = "El formato del correo electrónico no es válido";
     }
 
-    return errors;
+    this.setState({ errors });
+
+    return Object.keys(errors).length === 0;
   };
 
   handleSubmit = async (event) => {
     event.preventDefault();
 
-    const errors = this.validateForm();
+    const isValid = this.validateForm();
 
-    // Verificar si hay errores antes de enviar el formulario
-    if (Object.keys(errors).length > 0) {
-      this.setState({ errors });
-      return;
-    }
-
-    const confirmation = window.confirm(
-      `Confirmar envío con los siguientes datos:\n\nNombre: ${this.state.formularioData.nombre
-      }\nApellidos: ${this.state.formularioData.apellidos}\nEmail: ${this.state.formularioData.email
-      }`
-    );
-
-    if (confirmation) {
-      try {
-        // Datos a enviar al servidor
-        const { nombre, apellidos, email } = this.state.formularioData;
-
-        // Enviar datos al servidor
-        const response = await axios.post('http://localhost:3001/api/insert', {
-          nombre,
-          apellidos,
-          email,
-        });
-
-        console.log('Datos del formulario enviados correctamente', response.data);
-      } catch (error) {
-        console.error('Error al enviar los datos del formulario:', error.message);
-      }
-    } else {
-      console.log('Envío cancelado');
+    if (isValid) {
+      this.setState({ showConfirmation: true });
     }
   };
 
+  handleConfirmation = async () => {
+    const { nombre, apellidos, email } = this.state.formularioData;
+
+    try {
+      const response = await axios.post("http://localhost:3001/api/insert", {
+        nombre,
+        apellidos,
+        email,
+      });
+
+      console.log("Datos del formulario enviados correctamente", response.data);
+    } catch (error) {
+      console.error("Error al enviar los datos del formulario:", error.message);
+    }
+
+    this.setState({ showConfirmation: false });
+  };
+
   render() {
+    const { errors, showConfirmation } = this.state;
+
+    if (showConfirmation) {
+      return (
+        <div className="container">
+          <div className="row justify-content-center">
+            <div className="col-md-6">
+              <div className="border border-2 bg-light p-4 rounded">
+                <h1>Confirmar envío</h1>
+                <p>
+                  Nombre: {this.state.formularioData.nombre}<br />
+                  Apellidos: {this.state.formularioData.apellidos}<br />
+                  Email: {this.state.formularioData.email}
+                </p>
+                <button onClick={this.handleConfirmation} className="btn btn-primary">
+                  Confirmar
+                </button>
+                <button onClick={() => this.setState({ showConfirmation: false })} className="btn btn-secondary ml-2">
+                  Cancelar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
     return (
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-md-6">
-            <form onSubmit={this.handleSubmit} className="border border-2 bg-light p-4 rounded">
+            <form
+              onSubmit={this.handleSubmit}
+              className="border border-2 bg-light p-4 rounded"
+            >
               <fieldset>
                 <h1>Ingrese Nuevo Alumno</h1>
                 <div className="form-group row">
@@ -116,16 +124,17 @@ class MiFormulario extends React.Component {
                     Nombre:
                   </label>
                   <div className="col-12">
-                    <div className="input-group">
+                    <div className={`input-group ${errors.nombre ? "has-error" : ""}`}>
                       <input
                         id="nombre"
                         name="nombre"
                         placeholder="Ingrese nombre del alumno..."
                         type="text"
-                        className="form-control"
+                        className={`form-control ${errors.nombre ? "is-invalid" : ""}`}
                         onChange={this.handleInputChange}
                       />
                     </div>
+                    {errors.nombre && <p className="text-danger">{errors.nombre}</p>}
                   </div>
                 </div>
                 <div className="form-group row">
@@ -138,9 +147,14 @@ class MiFormulario extends React.Component {
                       name="apellidos"
                       placeholder="Ingrese apellidos del alumno..."
                       type="text"
-                      className="form-control"
+                      className={`form-control ${errors.apellidos ? "is-invalid" : ""}`}
                       onChange={this.handleInputChange}
                     />
+                    {errors.apellidos && (
+                      <div className="col-12">
+                        <p className="text-danger">{errors.apellidos}</p>
+                      </div>
+                    )}
                   </div>
                 </div>
                 <div className="form-group row">
@@ -153,12 +167,16 @@ class MiFormulario extends React.Component {
                       name="email"
                       placeholder="Ingrese email del alumno..."
                       type="email"
-                      className="form-control"
+                      className={`form-control ${errors.email ? "is-invalid" : ""}`}
                       onChange={this.handleInputChange}
                     />
+                    {errors.email && (
+                      <div className="col-12">
+                        <p className="text-danger">{errors.email}</p>
+                      </div>
+                    )}
                   </div>
                 </div>
-                {/* Agrega aquí otros campos del formulario si los necesitas */}
                 <div className="form-group row">
                   <div className="offset-4 col-8">
                     <button type="submit" className="btn btn-primary">
