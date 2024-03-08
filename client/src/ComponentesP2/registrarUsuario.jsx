@@ -17,6 +17,12 @@ const RegistrarUsuarioForm = () => {
   // Estado para controlar la visibilidad de la contraseña
   const [showPassword, setShowPassword] = useState(false);
 
+  // Estado para controlar si se ha ingresado algún dato en los campos de usuario y contraseña
+  const [userInput, setUserInput] = useState({
+    usuario: false,
+    password: false
+  });
+
   // Función que maneja el cambio en los campos del formulario
   const handleChange = (e) => {
     // Extrae el nombre y valor del campo del evento
@@ -30,11 +36,30 @@ const RegistrarUsuarioForm = () => {
       ...formData,
       [name]: formattedValue
     });
+
+    // Actualiza el estado para indicar que se ha ingresado algún dato en el campo
+    setUserInput({
+      ...userInput,
+      [name]: value.trim() !== ''
+    });
   };
 
   // Función que se ejecuta cuando se envía el formulario
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Validar que los campos no estén vacíos antes de enviar la solicitud al servidor
+    if (formData.nombre.trim() === '' || formData.apellidos.trim() === '' || formData.usuario.trim() === '' || formData.password.trim() === ''){
+      // Mostrar mensaje de error si los campos están vacíos
+      alert("Por favor, algunos campos están vacíos.");
+      return;
+    }
+    // Validar los campos antes de enviar la solicitud al servidor
+    if (!validateUsuario() || !validatePassword()) {
+      // Mostrar mensaje de error si los campos no son válidos
+      alert("Los campos usuario y/o constraseña no son válidos.");
+      return;
+    }
 
     try {
       // Realizar una solicitud POST al servidor
@@ -141,10 +166,10 @@ const RegistrarUsuarioForm = () => {
                 value={formData.usuario}
                 onChange={handleChange}
                 onFocus={handleFocus}
-                className={`form-control ${validateUsuario() ? 'is-valid' : 'is-invalid'}`}
+                className={`form-control ${userInput.usuario && !validateUsuario() ? 'is-invalid' : ''}`}
               />
 
-              {validateUsuario() ? null : (
+              {userInput.usuario && !validateUsuario() && (
                 <div className="invalid-feedback">
                   El usuario debe tener al menos 6 caracteres.
                 </div>
@@ -161,7 +186,7 @@ const RegistrarUsuarioForm = () => {
                 value={formData.password}
                 onChange={handleChange}
                 onFocus={handleFocus}
-                className={`form-control ${validatePassword() ? 'is-valid' : 'is-invalid'}`}
+                className={`form-control ${userInput.password && !validatePassword() ? 'is-invalid' : ''}`}
               />
               <button
                 className="btn btn-outline-secondary"
@@ -172,7 +197,7 @@ const RegistrarUsuarioForm = () => {
               </button>
 
 
-              {!validatePassword() && (
+              {userInput.password && !validatePassword() && (
                 <div className="invalid-feedback">
                   La contraseña debe tener entre 6 y 12 caracteres, al menos 1 mayúscula y 1 número.
                 </div>
