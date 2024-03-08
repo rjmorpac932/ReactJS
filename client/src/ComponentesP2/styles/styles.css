@@ -1,0 +1,17 @@
+.recuadro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  margin-bottom: 20px;
+  padding: 5px;
+  border-radius: 10px;
+  border: 2px solid #ccc;
+}

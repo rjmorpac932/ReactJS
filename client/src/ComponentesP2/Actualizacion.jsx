@@ -16,6 +16,7 @@ function Actualizacion() {
         console.error('Error al obtener los datos de los alumnos:', error);
         setErrors({ message: 'Error al obtener los datos de los alumnos' });
       });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []); // El array vacío como segundo argumento significa que este efecto se ejecutará solo una vez, al montar el componente
 
   const handleEdit = (id) => {
@@ -43,9 +44,25 @@ function Actualizacion() {
         return item;
       })
     );
-
-    if (name === 'nombre' || name === 'apellidos' || name === 'email') {
-      if (/[^a-zA-Z\s@.]/.test(value)) {
+    if (!value.trim()) {
+      setErrors(prevErrors => ({
+        ...prevErrors,
+        [name]: 'Este campo no puede estar vacío',
+      }));
+    } else if (name === 'nombre' || name === 'apellidos') {
+      if (/[^a-zA-Z\sáéíóúÁÉÍÓÚñÑ]/.test(value)) {
+        setErrors(prevErrors => ({
+          ...prevErrors,
+          [name]: 'Por favor, introduce un nombre válido. Solo se permiten letras y tildes',
+        }));
+      } else {
+        setErrors(prevErrors => {
+          const { [name]: _, ...rest } = prevErrors;
+          return rest;
+        });
+      }
+    } else if (name === 'email') {
+      if (!/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(value)) {
         setErrors(prevErrors => ({
           ...prevErrors,
           [name]: 'Por favor, introduce un email válido',
@@ -60,12 +77,12 @@ function Actualizacion() {
   };
   const handleSave = (id) => {
     const item = formData.find(item => item.id === id);
-    
+
     console.log('Datos del alumno a enviar:', item);
-    
+
     // Extrae solo los campos que quieres enviar
     const { nombre, apellidos, email } = item;
-  
+
     // Realiza una solicitud PUT al servidor para actualizar los datos del alumno
     axios.put(`http://localhost:3001/alumnos/${id}`, { nombre, apellidos, email })
       .then(response => {
@@ -76,22 +93,21 @@ function Actualizacion() {
         console.error('Error al actualizar el alumno:', error);
       });
   };
-  
-  
 
   return (
     <div className='main'>
       <div className='container'>
         <br />
-        <h1>Edición de usuarios</h1>
+        <h1>Edición de Alumnos</h1>
         <br />
-        <table className="table">
+        <table className="table table-hover">
+          <caption>Lista de alumnos</caption>
           <thead>
             <tr>
               <th className="th-nombre">Nombre</th>
               <th className="th-apellido">Apellidos</th>
               <th className="th-email">Email</th>
-              <th className="th-editar">Editar</th>
+              <th className="th-editar"></th>
             </tr>
           </thead>
           <tbody>
@@ -105,9 +121,10 @@ function Actualizacion() {
                         name="nombre"
                         value={item.nombre}
                         onChange={e => handleInputChange(e, item.id)}
+                        className={`form-control ${errors.nombre ? 'is-invalid' : 'is-valid'}`}
                         style={{ width: '100%' }}
                       />
-                      {errors.nombre && <p>{errors.nombre}</p>}
+                      {errors.nombre && <div className="invalid-feedback">{errors.nombre}</div>}
                     </>
                   ) : (
                     item.nombre
@@ -121,9 +138,10 @@ function Actualizacion() {
                         name="apellidos"
                         value={item.apellidos}
                         onChange={e => handleInputChange(e, item.id)}
+                        className={`form-control ${errors.apellidos ? 'is-invalid' : 'is-valid'}`}
                         style={{ width: '100%' }}
                       />
-                      {errors.apellidos && <p>{errors.apellidos}</p>}
+                      {errors.apellidos && <div className="invalid-feedback">{errors.apellidos}</div>}
                     </>
                   ) : (
                     item.apellidos
@@ -137,9 +155,10 @@ function Actualizacion() {
                         name="email"
                         value={item.email}
                         onChange={e => handleInputChange(e, item.id)}
+                        className={`form-control ${errors.email ? 'is-invalid' : 'is-valid'}`}
                         style={{ width: '100%' }}
                       />
-                      {errors.email && <p>{errors.email}</p>}
+                      {errors.email && <div className="invalid-feedback">{errors.email}</div>}
                     </>
                   ) : (
                     item.email
@@ -161,5 +180,5 @@ function Actualizacion() {
     </div>
   );
 }
-
-export default Actualizacion;
+  
+  export default Actualizacion;
