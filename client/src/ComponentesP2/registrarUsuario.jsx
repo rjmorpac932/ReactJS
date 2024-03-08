@@ -12,6 +12,9 @@ const RegistrarUsuarioForm = () => {
     password: ''
   });
 
+  const [errors, setErrors] = useState({});
+  const [formSubmitted, setFormSubmitted] = useState(false);
+
   const navigate = useNavigate();
 
   // Estado para controlar la visibilidad de la contraseña
@@ -22,6 +25,7 @@ const RegistrarUsuarioForm = () => {
     usuario: false,
     password: false
   });
+  
 
   // Función que maneja el cambio en los campos del formulario
   const handleChange = (e) => {
@@ -42,24 +46,51 @@ const RegistrarUsuarioForm = () => {
       ...userInput,
       [name]: value.trim() !== ''
     });
+
+    // Realiza la validación si el campo actualizado es el de usuario o contraseña
+    if (name === 'usuario' || name === 'password') {
+      let errors = {};
+
+      if (!validateUsuario()) {
+        errors.usuario = "El usuario debe tener al menos 6 caracteres.";
+      }
+
+      if (!validatePassword()) {
+        errors.password = "La contraseña debe tener entre 6 y 12 caracteres, al menos 1 mayúscula y 1 número.";
+      }
+
+      setErrors(errors);
+    }
   };
 
   // Función que se ejecuta cuando se envía el formulario
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validar que los campos no estén vacíos antes de enviar la solicitud al servidor
-    if (formData.nombre.trim() === '' || formData.apellidos.trim() === '' || formData.usuario.trim() === '' || formData.password.trim() === ''){
-      // Mostrar mensaje de error si los campos están vacíos
-      alert("Por favor, algunos campos están vacíos.");
-      return;
+    let errors = {};
+
+    if (formData.nombre.trim() === '') {
+      errors.nombre = 'El nombre no puede estar vacío';
     }
-    // Validar los campos antes de enviar la solicitud al servidor
-    if (!validateUsuario() || !validatePassword()) {
-      // Mostrar mensaje de error si los campos no son válidos
-      alert("Los campos usuario y/o constraseña no son válidos.");
-      return;
+
+    if (formData.apellidos.trim() === '') {
+      errors.apellidos = 'Los apellidos no puede estar vacío';
     }
+
+    if (formData.usuario.trim() === '') {
+      errors.usuario = 'El usuario no puede estar vacío';
+    }
+
+    if (formData.password.trim() === '') {
+      errors.password = 'La contraseña no puede estar vacía';
+    }
+
+    setErrors(errors);
+
+    if (Object.keys(errors).length > 0){
+      setFormSubmitted(true); // marcarlo como enviado
+      return;
+    } 
 
     try {
       // Realizar una solicitud POST al servidor
@@ -87,6 +118,7 @@ const RegistrarUsuarioForm = () => {
       console.log('El nombre de usuario ya existe.');
       alert("El nombre de usuario ya existe, pruebe con otro.")
     }
+    
   };
 
   // Función que se ejecuta cuando se selecciona un campo
@@ -127,8 +159,13 @@ const RegistrarUsuarioForm = () => {
                 value={formData.nombre}
                 onChange={handleChange}
                 onFocus={handleFocus}
-                className="form-control"
+                className={`form-control ${formSubmitted && errors.nombre ? 'is-invalid' : ''}`}
               />
+              {formSubmitted && errors.nombre && (
+                <div className="invalid-feedback">
+                  {errors.nombre}
+                </div>
+              )}
             </div>
 
             <div className="mb-3">
@@ -140,8 +177,13 @@ const RegistrarUsuarioForm = () => {
                 value={formData.apellidos}
                 onChange={handleChange}
                 onFocus={handleFocus}
-                className="form-control"
+                className={`form-control ${formSubmitted && errors.apellidos ? 'is-invalid' : ''}`}
               />
+              {formSubmitted && errors.apellidos && (
+                <div className="invalid-feedback">
+                  {errors.apellidos}
+                </div>
+              )}
             </div>
 
             <div className="mb-3">
@@ -166,12 +208,12 @@ const RegistrarUsuarioForm = () => {
                 value={formData.usuario}
                 onChange={handleChange}
                 onFocus={handleFocus}
-                className={`form-control ${userInput.usuario && !validateUsuario() ? 'is-invalid' : ''}`}
+                className={`form-control ${formSubmitted && errors.usuario ? 'is-invalid' : ''}`}
               />
 
-              {userInput.usuario && !validateUsuario() && (
+              {formSubmitted && errors.usuario && (
                 <div className="invalid-feedback">
-                  El usuario debe tener al menos 6 caracteres.
+                  {errors.usuario}
                 </div>
               )}
             </div>
@@ -186,7 +228,7 @@ const RegistrarUsuarioForm = () => {
                 value={formData.password}
                 onChange={handleChange}
                 onFocus={handleFocus}
-                className={`form-control ${userInput.password && !validatePassword() ? 'is-invalid' : ''}`}
+                className={`form-control ${formSubmitted && errors.password ? 'is-invalid' : ''}`}
               />
               <button
                 className="btn btn-outline-secondary"
@@ -197,9 +239,9 @@ const RegistrarUsuarioForm = () => {
               </button>
 
 
-              {userInput.password && !validatePassword() && (
+              {formSubmitted && errors.password && (
                 <div className="invalid-feedback">
-                  La contraseña debe tener entre 6 y 12 caracteres, al menos 1 mayúscula y 1 número.
+                  {errors.password}
                 </div>
               )}
             </div>
